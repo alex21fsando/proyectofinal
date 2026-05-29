@@ -1,214 +1,590 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techcore Store</title>
-
+    <title>Document</title>
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/script.js" defer></script>
 </head>
-
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+<!-- NAVBAR -->
+<nav class="navbar">
 
-        <!-- Parte superior -->
-        <div class="nav-top">
+    <div class="nav-container">
 
-            <!-- Logo -->
-            <div class="logo">
-                <img src="img/logo.png" alt="Logo Techcore">
+        <div class="nav-logo">
+            <a href="#inicio">
+                <img src="img/logo.png" alt="Techcore Store" width="150">
+            </a>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#registro">Registro</a></li>
+        </ul>
+
+    </div>
+
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-sub">
+            Bienvenido a Techcore Store
+        </p>
+
+        <h1>
+            LAPTOPS, PCs Y
+            <br>
+            <span class="highlight">
+                ACCESORIOS GAMER
+            </span>
+        </h1>
+
+        <p class="hero-desc">
+            Los mejores equipos al mejor precio en Cochabamba.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="https://wa.me/59172768984"
+            class="btn btn-primary">
+                💬 WhatsApp
+            </a>
+
+            <a href="#productos"
+            class="btn btn-secondary">
+                Ver Productos
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CATEGORIAS -->
+<section class="categorias">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Categorías
+        </h2>
+
+        <div class="categorias-grid">
+
+            <div class="categoria-card">
+                <div class="cat-icon">💻</div>
+                <h3>Laptops</h3>
+                <p>Gaming y trabajo</p>
             </div>
 
-            <!-- WhatsApp -->
-            <div class="nav-info">
-                <div class="whatsapp">
-                    💬 Asesor Especializado <br>
-                    <strong>64916803</strong>
-                </div>
+            <div class="categoria-card">
+                <div class="cat-icon">🖥️</div>
+                <h3>PCs</h3>
+                <p>Armadas y personalizadas</p>
+            </div>
+
+            <div class="categoria-card">
+                <div class="cat-icon">⚙️</div>
+                <h3>Componentes</h3>
+                <p>RTX, RAM, SSD y más</p>
+            </div>
+
+            <div class="categoria-card">
+                <div class="cat-icon">🎮</div>
+                <h3>Accesorios</h3>
+                <p>Mouse, teclados y headsets</p>
             </div>
 
         </div>
 
-        <!-- Menú -->
-        <div class="nav-bottom">
+    </div>
 
-            <ul>
+</section>
 
-                <li>
-                    <a href="index.html">Inicio</a>
-                </li>
+<!-- PRODUCTOS -->
+<section id="productos" class="catalogo">
 
-                <li>
-                    <a href="productos.html">Productos</a>
-                </li>
+    <div class="container">
 
-                <li>
-                    <a href="ubicacion.html">Ubicación</a>
-                </li>
+        <div class="page-header">
 
-                <li>
-                    <a href="contacto.html">Contacto</a>
-                </li>
-
-                <!-- Dropdown -->
-                <li class="dropdown">
-
-                    <a href="#">
-                        Mi Cuenta ⌄
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a href="login.html">
-                                Iniciar sesión
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="registro.html">
-                                Registrarse
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-    </nav>
-
-    <!-- MAIN -->
-    <main>
-
-        <!-- HERO -->
-        <section class="hero">
-
-            <!-- Fondo -->
-            <div class="hero-bg">
-                <img src="img/pc-gamer.jpg" alt="PC Gamer">
-            </div>
-
-            <!-- Contenido -->
-            <div class="hero-content">
-
-                <h1>
-                    ENCUENTRA LO QUE BUSCAS <br>
-                    AQUÍ EN TECHCORE STORE
-                </h1>
-
-                <!-- Botones -->
-                <div class="hero-buttons">
-
-                    <a href="https://wa.me/59172768984?text=Hola%20quiero%20cotizar%20una%20PC"
-                       class="btn btn-primary">
-
-                        QUIERO COTIZAR UNA PC
-
-                    </a>
-
-                    <a href="productos.html"
-                       class="btn btn-secondary">
-
-                        VER TIENDA
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- SECCIONES FUTURAS -->
-
-        <section class="productos">
-            <!-- Productos -->
-        </section>
-
-        <section class="ofertas">
-            <!-- Ofertas -->
-        </section>
-
-        <section class="categorias">
-            <!-- Categorías -->
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-
-        <div class="footer-container">
-
-            <!-- Contacto -->
-            <div class="footer-col">
-
-                <h2 class="logo-footer">
-                    TECHCORE
-                </h2>
-
-                <p>📞 77947379</p>
-                <p>✉️ storecyrex@gmail.com</p>
-
-            </div>
-
-            <!-- Links -->
-            <div class="footer-col">
-
-                <h3>TIENDA</h3>
-
-                <ul>
-
-                    <li>
-                        <a href="#">Sobre Nosotros</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Mi Cuenta</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Contacto</a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <!-- Redes -->
-            <div class="footer-col">
-
-                <h3>REDES SOCIALES</h3>
-
-                <div class="socials">
-
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">TikTok</a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Parte inferior -->
-        <div class="footer-bottom">
+            <h1>
+                Nuestros Productos
+            </h1>
 
             <p>
-                © All rights reserved 2025
+                Laptops, PCs y accesorios
             </p>
 
         </div>
 
-    </footer>
+        <div class="productos-grid">
+
+            <div class="producto-card">
+
+                <div class="producto-badge">
+                    Oferta
+                </div>
+
+                <div class="producto-img">
+                    <img src="img/productos/laptop1.jpg"
+                    alt="Laptop ASUS">
+                </div>
+
+                <div class="producto-info">
+
+                    <span class="producto-cat">
+                        Laptop
+                    </span>
+
+                    <h3>
+                        ASUS ROG Strix G15
+                    </h3>
+
+                    <p class="producto-specs">
+                        RTX 3060 · Ryzen 7 · 16GB
+                    </p>
+
+                    <div class="producto-precio">
+
+                        <span class="precio-actual">
+                            Bs. 8,500
+                        </span>
+
+                        <span class="precio-anterior">
+                            Bs. 9,200
+                        </span>
+
+                    </div>
+
+                    <a href="https://wa.me/59172768984"
+                    class="btn btn-card">
+                        Consultar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="producto-card">
+
+                <div class="producto-img">
+                    <img src="img/productos/laptop2.jpg"
+                    alt="HP Victus">
+                </div>
+
+                <div class="producto-info">
+
+                    <span class="producto-cat">
+                        Laptop
+                    </span>
+
+                    <h3>
+                        HP Victus 15
+                    </h3>
+
+                    <p class="producto-specs">
+                        RTX 3050 · Intel i5
+                    </p>
+
+                    <div class="producto-precio">
+
+                        <span class="precio-actual">
+                            Bs. 5,200
+                        </span>
+
+                    </div>
+
+                    <a href="https://wa.me/59172768984"
+                    class="btn btn-card">
+                        Consultar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="producto-card">
+
+                <div class="producto-img">
+                    <img src="img/productos/pc1.jpg"
+                    alt="PC Gamer">
+                </div>
+
+                <div class="producto-info">
+
+                    <span class="producto-cat">
+                        PC Gamer
+                    </span>
+
+                    <h3>
+                        PC RTX 4060
+                    </h3>
+
+                    <p class="producto-specs">
+                        Intel i5 · 16GB · SSD
+                    </p>
+
+                    <div class="producto-precio">
+
+                        <span class="precio-actual">
+                            Bs. 7,800
+                        </span>
+
+                    </div>
+
+                    <a href="https://wa.me/59172768984"
+                    class="btn btn-card">
+                        Consultar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="producto-card">
+
+                <div class="producto-img">
+                    <img src="img/productos/teclado1.jpg"
+                    alt="Teclado RGB">
+                </div>
+
+                <div class="producto-info">
+
+                    <span class="producto-cat">
+                        Accesorio
+                    </span>
+
+                    <h3>
+                        Teclado Mecánico RGB
+                    </h3>
+
+                    <p class="producto-specs">
+                        Switch Red · RGB
+                    </p>
+
+                    <div class="producto-precio">
+
+                        <span class="precio-actual">
+                            Bs. 450
+                        </span>
+
+                    </div>
+
+                    <a href="https://wa.me/59172768984"
+                    class="btn btn-card">
+                        Consultar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- UBICACION -->
+<section id="ubicacion" class="ubicacion-section">
+
+    <div class="container">
+
+        <div class="page-header">
+
+            <h1>
+                Nuestra Ubicación
+            </h1>
+
+            <p>
+                Cochabamba, Bolivia
+            </p>
+
+        </div>
+
+        <div class="ubicacion-grid">
+
+            <div class="ubicacion-info">
+
+                <h2>
+                    Encuéntranos aquí
+                </h2>
+
+                <p>
+                    📍 Cochabamba, Bolivia
+                </p>
+
+                <p>
+                    🕐 Lunes a Sábado
+                </p>
+
+                <p>
+                    📞 +591 72768984
+                </p>
+
+                <a href="https://wa.me/59172768984"
+                class="btn btn-primary">
+                    Pedir dirección
+                </a>
+
+            </div>
+
+            <div class="mapa-wrap">
+
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120960.37!2d-66.1568!3d-17.3895"
+                width="100%"
+                height="400"
+                allowfullscreen=""
+                loading="lazy">
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contacto-section">
+
+    <div class="container">
+
+        <div class="page-header">
+
+            <h1>
+                Contacto
+            </h1>
+
+            <p>
+                Escríbenos
+            </p>
+
+        </div>
+
+        <div class="contacto-grid">
+
+            <div class="contacto-info">
+
+                <h2>
+                    Habla con nosotros
+                </h2>
+
+                <p>
+                    WhatsApp:
+                    +591 72768984
+                </p>
+
+                <p>
+                    Cochabamba, Bolivia
+                </p>
+
+            </div>
+
+            <form class="contacto-form">
+
+                <div class="form-group">
+                    <input type="text"
+                    placeholder="Nombre">
+                </div>
+
+                <div class="form-group">
+                    <input type="email"
+                    placeholder="Correo">
+                </div>
+
+                <div class="form-group">
+                    <textarea rows="5"
+                    placeholder="Mensaje"></textarea>
+                </div>
+
+                <button class="btn btn-primary">
+                    Enviar
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="auth-section">
+
+    <div class="auth-card">
+
+        <h2>
+            Iniciar Sesión
+        </h2>
+
+        <form class="auth-form">
+
+            <div class="form-group">
+                <input type="email"
+                placeholder="Correo">
+            </div>
+
+            <div class="form-group">
+                <input type="password"
+                placeholder="Contraseña">
+            </div>
+
+            <button class="btn btn-primary">
+                Ingresar
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- REGISTRO -->
+<section id="registro" class="auth-section">
+
+    <div class="auth-card">
+
+        <h2>
+            Crear Cuenta
+        </h2>
+
+        <form class="auth-form">
+
+            <div class="form-group">
+                <input type="text"
+                placeholder="Nombre completo">
+            </div>
+
+            <div class="form-group">
+                <input type="email"
+                placeholder="Correo">
+            </div>
+
+            <div class="form-group">
+                <input type="password"
+                placeholder="Contraseña">
+            </div>
+
+            <button class="btn btn-primary">
+                Registrarse
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- VENTAJAS -->
+<section class="ventajas">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            ¿Por qué elegirnos?
+        </h2>
+
+        <div class="ventajas-grid">
+
+            <div class="ventaja-item">
+                <h3>🛡 Garantía</h3>
+                <p>Garantía real y soporte técnico.</p>
+            </div>
+
+            <div class="ventaja-item">
+                <h3>⚡ Entrega rápida</h3>
+                <p>Entrega rápida en Cochabamba.</p>
+            </div>
+
+            <div class="ventaja-item">
+                <h3>💰 Mejores precios</h3>
+                <p>Precios competitivos.</p>
+            </div>
+
+            <div class="ventaja-item">
+                <h3>🔧 Soporte técnico</h3>
+                <p>Mantenimiento y armado.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-col">
+
+                <img src="img/logo.png"
+                width="140">
+
+                <p>
+                    Techcore Store
+                </p>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>
+                    Navegación
+                </h3>
+
+                <p><a href="#inicio">Inicio</a></p>
+                <p><a href="#productos">Productos</a></p>
+                <p><a href="#ubicacion">Ubicación</a></p>
+                <p><a href="#contacto">Contacto</a></p>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>
+                    Contacto
+                </h3>
+
+                <p>📍 Cochabamba</p>
+                <p>📞 +591 72768984</p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2025 Techcore Store
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
