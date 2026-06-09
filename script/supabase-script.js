@@ -1,43 +1,28 @@
-// script/supabase-script.js
+// =====================================
+// js/supabase-cliente.js
+// CONFIGURACION PROFESIONAL SUPABASE
+// =====================================
 
-const SUPABASE_URL =
-'https://vzmdtmusrcyrnizfpygu.supabase.co';
+// URL DEL PROYECTO
+const SUPABASE_URL = "https://mzbykhcrccrsyffojqso.supabase.co";
 
-const SUPABASE_ANON_KEY =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ6bWR0bXVzcmN5cm5pemZweWd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMDg5MzYsImV4cCI6MjA5NTU4NDkzNn0.Jqyl2-xiZ5AjCR5g5lgZlI6pUg4S32s7qXcuMaFQq3I';
+// PUBLIC ANON KEY
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im16YnlraGNyY2Nyc3lmZm9qcXNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMDQ1MzIsImV4cCI6MjA5NjU4MDUzMn0.-Ph-Fq208epHvrYSef_57tubZx9F41WQZjw4187Piv0";
 
-const db = window.supabase.createClient(
+// CREAR CLIENTE
+const { createClient } = supabase;
+
+const db = createClient(
     SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
-
-// Obtener usuario actual
-async function getCurrentUser() {
-
-    const {
-        data: { user }
-    } = await db.auth.getUser();
-
-    return user;
-}
-
-// Escuchar cambios de sesión
-db.auth.onAuthStateChange(
-    async (event, session) => {
-
-        console.log(
-            "Auth:",
-            event,
-            session?.user?.email
-        );
-
-        if (
-            typeof actualizarEstadoUsuario ===
-            "function"
-        ) {
-            actualizarEstadoUsuario();
+    SUPABASE_ANON_KEY,
+    {
+        auth: {
+            persistSession: true,     // mantener sesión iniciada
+            autoRefreshToken: true,  // renovar sesión
+            detectSessionInUrl: true // recuperación de cuenta
         }
     }
 );
 
-
+// MENSAJE CONSOLA
+console.log("💻 Supabase conectado correctamente");

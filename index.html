@@ -1,170 +1,176 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techcore Store - Cochabamba</title>
-    
+    <title>TechStore Jhoel</title>
+
     <!-- CSS -->
     <link rel="stylesheet" href="style/app.css">
 
-    <!-- Librerías -->
+    <!-- LIBRERIAS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <!-- JS -->
     <script src="script/supabase-script.js"></script>
     <script src="script/app.js" defer></script>
+    
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav>
-    <img class="logo" src="img/logo.png" alt="Techcore Store">
-    <div class="nav-links">
-        <button onclick="mostrarvista('home')">Inicio</button>
-        <button onclick="mostrarvista('menu')">Menú</button>
-        <button onclick="mostrarvista('cart')">
-            🛒 Carrito <span id="cart-count">0</span>
-        </button>
-        <button onclick="mostrarvista('ubicacion')">Ubicación</button>
-        <button onclick="mostrarvista('ventajas')">Ventajas</button>
-        <button onclick="mostrarvista('contact')">Contacto</button>
-        
-        <button id="btn-login" onclick="mostrarvista('login')">Iniciar Sesión</button>
-        <button id="btn-registro" onclick="mostrarvista('registro')">Registro</button>
-        <button id="btn-cerrar" onclick="cerrarSesion()" style="display:none;">Cerrar Sesión</button>
+    <!-- ========================= NAVBAR ========================== -->
+    <nav>
+        <img class="logo" src="img/logo.png" alt="Logo">
 
-        <p id="estado-usuario">❌ No has iniciado sesión</p>
-    </div>
-</nav>
+        <div class="nav-links">
+            <button onclick="mostrarvista('home')">Inicio</button>
+            <button onclick="mostrarvista('menu')">Productos</button>
+            <button onclick="mostrarvista('cart')">
+                🛒 Carrito <span id="cart-count">0</span>
+            </button>
+            <button onclick="mostrarvista('contact')">Contacto</button>
+            
+            <button id="btn-login" onclick="mostrarvista('login')">Iniciar Sesión</button>
+            <button id="btn-registro" onclick="mostrarvista('registro')">Registro</button>
+            <button id="btn-cerrar" onclick="cerrarSesion()" style="display:none;">Cerrar Sesión</button>
 
-<!-- HERO / HOME -->
-<section id="view-home" class="view active">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <p class="hero-sub">Bienvenido a Techcore Store</p>
-        <h1>LAPTOPS, PCs Y<br><span class="highlight">ACCESORIOS GAMER</span></h1>
-        <p class="hero-desc">Los mejores equipos al mejor precio en Cochabamba.</p>
-    </div>
-
-    <div class="container">
-        <h2 class="section-title">Categorías</h2>
-        <div class="categorias-grid">
-            <div class="categoria-card"><div class="cat-icon">💻</div><h3>Laptops</h3><p>Gaming y trabajo</p></div>
-            <div class="categoria-card"><div class="cat-icon">🖥️</div><h3>PCs</h3><p>Armadas y personalizadas</p></div>
-            <div class="categoria-card"><div class="cat-icon">⚙️</div><h3>Componentes</h3><p>RTX, RAM, SSD y más</p></div>
-            <div class="categoria-card"><div class="cat-icon">🎮</div><h3>Accesorios</h3><p>Mouse, teclados y headsets</p></div>
+            <p id="estado-usuario">❌ No has iniciado sesión</p>
         </div>
-    </div>
+    </nav>
+
+    <!-- ========================= MAIN ========================== -->
+    <main>
+
+        <!-- HOME -->
+        <section id="view-home" class="view active">
+            <h1>💻 Bienvenido a TechStore Jhoel</h1>
+            <p>Encuentra las mejores PCs, laptops y accesorios al mejor precio.</p>
+        </section>
+
+        <!-- LOGIN -->
+        <section id="view-login" class="view">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm" class="contact-form">
+                <input type="email" id="loginCorreo" placeholder="Correo electrónico" required>
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <button type="submit">Entrar</button>
+                
+                <p onclick="usarOtraCuenta()" style="cursor:pointer; margin-top:10px;">
+                    Usar otra cuenta
+                </p>
+                <p onclick="mostrarvista('registro')" style="cursor:pointer;">
+                    ¿No tienes cuenta? Regístrate
+                </p>
+            </form>
+        </section>
+
+        <!-- REGISTRO -->
+        <section id="view-registro" class="view">
+            <h2>Crear Cuenta</h2>
+            <form id="registroForm" class="contact-form">
+                <input type="text" id="regNombre" placeholder="Nombre completo" required>
+                <input type="email" id="regCorreo" placeholder="Correo electrónico" required>
+                <input type="password" id="regPassword" placeholder="Contraseña" required>
+                <button type="submit">Registrarme</button>
+            </form>
+        </section>
+
+        <!-- MENÚ -->
+        <section id="view-menu" class="view">
+
+    <h2>🖥️ PCs</h2>
+
+    <h3>🔥 Gama Alta</h3>
+    <div id="pc-alta" class="products-container"></div>
+
+    <h3>⚡ Gama Media</h3>
+    <div id="pc-media" class="products-container"></div>
+
+    <h3>💼 Trabajo y Oficina</h3>
+    <div id="pc-oficina" class="products-container"></div>
+
+
+    <h2>💻 Laptops</h2>
+
+    <h3>🔥 Gama Alta</h3>
+    <div id="laptop-alta" class="products-container"></div>
+
+    <h3>⚡ Gama Media</h3>
+    <div id="laptop-media" class="products-container"></div>
+
+    <h3>💼 Trabajo y Oficina</h3>
+    <div id="laptop-oficina" class="products-container"></div>
+
+
+    <h2>⌨️ Accesorios</h2>
+
+    <h3>🔥 Gama Alta</h3>
+    <div id="accesorio-alta" class="products-container"></div>
+
+    <h3>⚡ Gama Media</h3>
+    <div id="accesorio-media" class="products-container"></div>
+
+    <h3>💼 Trabajo y Oficina</h3>
+    <div id="accesorio-oficina" class="products-container"></div>
+
 </section>
 
-<!-- PRODUCTOS -->
-<section id="view-menu" class="view">
-    <div class="container">
-        <h2 class="section-title">Nuestros Productos</h2>
-        <div id="products-container" class="productos-grid"></div>
-    </div>
-</section>
+        <!-- CARRITO -->
+        <section id="view-cart" class="view">
+            <div id="cart-items"></div>
+            
+        </section>
 
-<!-- CARRITO -->
-<section id="view-cart" class="view">
-    <div class="container">
-        <h2 class="section-title">Tu Carrito</h2>
-        <div id="cart-items"></div>
-        <div id="cart-total" class="cart-total"></div>
-    </div>
-</section>
+        <!-- CONTACTO -->
+        <section id="view-contact" class="view">
+            <h2>Contacto</h2>
+            <div class="contact-grid">
 
-<!-- UBICACION -->
-<section id="view-ubicacion" class="view">
-    <div class="container">
-        <div class="page-header">
-            <h1>Nuestra Ubicación</h1>
-            <p>Cochabamba, Bolivia</p>
-        </div>
-        <!-- Puedes agregar aquí un mapa de Google o Leaflet -->
-    </div>
-</section>
+                <!-- INFO DUEÑO -->
+                <div class="card info-dueno">
+                    <h3>Sobre el dueño</h3>
+                    <p><strong>Nombre:</strong> Jhoel Sandoval</p>
+                    <p>Apasionado por la tecnología y comprometido con ofrecer los mejores equipos y atención.</p>
+                    <p class="frase">"Gracias por elegirnos 💻"</p>
+                </div>
 
-<!-- VENTAJAS -->
-<section id="view-ventajas" class="view">
-    <div class="container">
-        <h2 class="section-title">¿Por qué elegirnos?</h2>
-        <div class="ventajas-grid">
-            <div class="ventaja-item"><h3>🛡 Garantía</h3><p>Garantía real y soporte técnico.</p></div>
-            <div class="ventaja-item"><h3>⚡ Entrega rápida</h3><p>Entrega rápida en Cochabamba.</p></div>
-            <div class="ventaja-item"><h3>💰 Mejores precios</h3><p>Precios competitivos.</p></div>
-            <div class="ventaja-item"><h3>🔧 Soporte técnico</h3><p>Mantenimiento y armado.</p></div>
-        </div>
-    </div>
-</section>
+                <!-- VIDEO -->
+                <div class="card imagen-dueno">
+                    <video class="video-dueno" autoplay muted loop playsinline>
+                        <source src="video/emojipreocupado.mp4" type="video/mp4">
+                        Tu navegador no soporta video.
+                    </video>
+                </div>
 
-<!-- CONTACTO -->
-<section id="view-contact" class="view">
-    <div class="container">
-        <h2>Contacto</h2>
-        <div class="contact-grid">
-            <div class="card info-dueno">
-                <h3>Sobre el dueño</h3>
-                <p><strong>Nombre:</strong> Jhoel Sandoval</p>
-                <p>Apasionado por ofrecer productos de calidad y excelente atención.</p>
-                <p class="frase">“Gracias por elegirnos”</p>
+                <!-- FORMULARIO -->
+                <div class="card form-card">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="formContacto" class="contact-form">
+                        <input type="text" id="nombre" placeholder="Nombre completo" required>
+                        <input type="email" id="correo" placeholder="Correo electrónico" required>
+                        <textarea id="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+                        <button type="submit">Enviar Mensaje</button>
+                    </form>
+                </div>
             </div>
-            <div class="card imagen-dueno">
-                <video class="video-dueno" autoplay muted loop playsinline>
-                    <source src="video/emojipreocupado.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="card form-card">
-                <h3>Envíanos un mensaje</h3>
-                <form id="formContacto" class="contact-form">
-                    <input type="text" id="nombre" placeholder="Nombre completo" required>
-                    <input type="email" id="correo" placeholder="Correo electrónico" required>
-                    <textarea id="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
-                    <button type="submit">Enviar Mensaje</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- LOGIN y REGISTRO (mantengo igual, solo corregí estructura) -->
-<section id="view-login" class="view">
-    <div class="container">
-        <h2>Iniciar Sesión</h2>
-        <form id="loginForm" class="contact-form">
-            <input type="email" id="loginCorreo" placeholder="Correo electrónico" required>
-            <input type="password" id="loginPassword" placeholder="Contraseña" required>
-            <button type="submit">Entrar</button>
-            <p onclick="mostrarvista('registro')" style="cursor:pointer; margin-top:10px;">¿No tienes cuenta? Regístrate</p>
-        </form>
-    </div>
-</section>
+    </main>
 
-<section id="view-registro" class="view">
-    <div class="container">
-        <h2>Crear Cuenta</h2>
-        <form id="registroForm" class="contact-form">
-            <input type="text" id="regNombre" placeholder="Nombre completo" required>
-            <input type="email" id="regCorreo" placeholder="Correo electrónico" required>
-            <input type="password" id="regPassword" placeholder="Contraseña" required>
-            <button type="submit">Registrarme</button>
-        </form>
-    </div>
-</section>
+    <!-- FOOTER -->
+    <footer>
+        <p>Elaborado por Jhoel Sandoval © 2026</p>
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-    <p>Elaborado por Jhoel Sandoval © 2026</p>
-</footer>
-
-<!-- EmailJS -->
-<script>
-    (function () {
-        emailjs.init("15PS0JCpv6Y6Ju8FJ");
-    })();
-</script>
+    <!-- EMAILJS INIT -->
+    <script>
+        (function () {
+            emailjs.init("15PS0JCpv6Y6Ju8FJ");
+        })();
+    </script>
 
 </body>
 </html>
