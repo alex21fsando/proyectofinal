@@ -4,172 +4,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore Jhoel</title>
+    <meta name="description" content="TechStore Jhoel - PCs, Laptops y Accesorios en Cochabamba. Los mejores equipos al mejor precio.">
+    <title>TechStore Jhoel | PCs, Laptops y Accesorios</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="style/app.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
 
-    <!-- LIBRERIAS -->
+    <!-- LIBRERÍAS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <!-- JS -->
     <script src="script/supabase-script.js"></script>
     <script src="script/app.js" defer></script>
-    
 </head>
 
 <body>
 
     <!-- ========================= NAVBAR ========================== -->
-    <nav>
-        <img class="logo" src="img/logo.png" alt="Logo">
+    <nav id="navbar">
+        <img class="logo" src="img/logo.png" alt="TechStore Jhoel">
 
         <div class="nav-links">
-            <button onclick="mostrarvista('home')">Inicio</button>
-            <button onclick="mostrarvista('menu')">Productos</button>
-            <button onclick="mostrarvista('cart')">
+            <button onclick="mostrarvista('home')">🏠 Inicio</button>
+            <button onclick="mostrarvista('menu')">🖥️ Productos</button>
+            <button id="btn-carrito-nav" onclick="mostrarvista('cart')">
                 🛒 Carrito <span id="cart-count">0</span>
             </button>
-            <button onclick="mostrarvista('contact')">Contacto</button>
-            
-            <button id="btn-login" onclick="mostrarvista('login')">Iniciar Sesión</button>
-            <button id="btn-registro" onclick="mostrarvista('registro')">Registro</button>
-            <button id="btn-cerrar" onclick="cerrarSesion()" style="display:none;">Cerrar Sesión</button>
+            <button onclick="mostrarvista('contact')">✉️ Contacto</button>
 
-            <p id="estado-usuario">❌ No has iniciado sesión</p>
+            <button id="btn-login"    onclick="mostrarvista('login')">Iniciar Sesión</button>
+            <button id="btn-registro" onclick="mostrarvista('registro')">Registro</button>
+            <button id="btn-cerrar"   onclick="cerrarSesion()" style="display:none;">Cerrar Sesión</button>
+
+            <p id="estado-usuario">❌ Sin sesión</p>
         </div>
     </nav>
 
     <!-- ========================= MAIN ========================== -->
     <main>
 
-        <!-- HOME -->
+        <!-- ===== HOME ===== -->
         <section id="view-home" class="view active">
-            <h1>💻 Bienvenido a TechStore Jhoel</h1>
-            <p>Encuentra las mejores PCs, laptops y accesorios al mejor precio.</p>
+
+            <!-- HERO -->
+            <div class="hero">
+                <div class="hero-bg-grid"></div>
+                <div class="hero-glow"></div>
+                <div class="hero-glow-2"></div>
+
+                <div class="hero-top">
+                    <div class="hero-content">
+                        <div class="hero-badge">Tienda en Cochabamba, Bolivia</div>
+                        <h1>
+                            Las mejores<br>
+                            <span class="highlight">PCs, Laptops</span><br>
+                            y Accesorios
+                        </h1>
+                        <p>
+                            Equipos de alta calidad con garantía real.
+                            Armamos tu PC ideal según tu presupuesto y uso.
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn-hero-primary" onclick="mostrarvista('menu')">
+                                Ver Productos →
+                            </button>
+                            <button class="btn-hero-secondary"
+                                onclick="window.open('https://wa.me/59164916803?text=Hola%20quiero%20cotizar%20una%20PC','_blank')">
+                                💬 Cotizar por WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">50+</span>
+                        <span class="stat-label">Productos disponibles</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">3</span>
+                        <span class="stat-label">Categorías</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Garantía local</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORÍAS RÁPIDAS -->
+            <div class="home-section">
+                <h2 class="home-section-title"><span>⚡</span> Categorías</h2>
+                <div class="quick-cats">
+                    <div class="quick-cat-card" onclick="mostrarvista('menu')">
+                        <div class="quick-cat-icon">🖥️</div>
+                        <h3>PCs Gamer</h3>
+                        <p>Gama Alta, Media y Oficina</p>
+                    </div>
+                    <div class="quick-cat-card" onclick="mostrarvista('menu')">
+                        <div class="quick-cat-icon">💻</div>
+                        <h3>Laptops</h3>
+                        <p>Gaming, trabajo y estudio</p>
+                    </div>
+                    <div class="quick-cat-card" onclick="mostrarvista('menu')">
+                        <div class="quick-cat-icon">⌨️</div>
+                        <h3>Accesorios</h3>
+                        <p>Teclados, mouse, headsets</p>
+                    </div>
+                    <div class="quick-cat-card"
+                        onclick="window.open('https://wa.me/59164916803?text=Hola%20quiero%20cotizar%20una%20PC%20personalizada','_blank')">
+                        <div class="quick-cat-icon">🔧</div>
+                        <h3>PC Personalizada</h3>
+                        <p>Cotiza con nosotros</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BANNER WHATSAPP -->
+            <div class="wha-banner">
+                <div class="wha-banner-text">
+                    <h3>¿Necesitas asesoría?</h3>
+                    <p>Te ayudamos a elegir el equipo perfecto según tu presupuesto.<br>
+                       Respuesta inmediata por WhatsApp.</p>
+                </div>
+                <button class="btn-hero-primary"
+                    onclick="window.open('https://wa.me/59164916803?text=Hola%20necesito%20asesoría%20para%20comprar%20un%20equipo','_blank')">
+                    💬 Hablar con un asesor
+                </button>
+            </div>
+
         </section>
 
-        <!-- LOGIN -->
+        <!-- ===== LOGIN ===== -->
         <section id="view-login" class="view">
             <h2>Iniciar Sesión</h2>
+            <p class="form-subtitle">Accede a tu cuenta para realizar pedidos</p>
             <form id="loginForm" class="contact-form">
-                <input type="email" id="loginCorreo" placeholder="Correo electrónico" required>
+                <input type="email"    id="loginCorreo"   placeholder="Correo electrónico" required>
                 <input type="password" id="loginPassword" placeholder="Contraseña" required>
                 <button type="submit">Entrar</button>
-                
-                <p onclick="usarOtraCuenta()" style="cursor:pointer; margin-top:10px;">
-                    Usar otra cuenta
-                </p>
-                <p onclick="mostrarvista('registro')" style="cursor:pointer;">
-                    ¿No tienes cuenta? Regístrate
+                <p class="form-link" onclick="usarOtraCuenta()">Usar otra cuenta</p>
+                <p class="form-link" onclick="mostrarvista('registro')">
+                    ¿No tienes cuenta? <span>Regístrate aquí</span>
                 </p>
             </form>
         </section>
 
-        <!-- REGISTRO -->
+        <!-- ===== REGISTRO ===== -->
         <section id="view-registro" class="view">
             <h2>Crear Cuenta</h2>
+            <p class="form-subtitle">Únete y realiza tus pedidos fácilmente</p>
             <form id="registroForm" class="contact-form">
-                <input type="text" id="regNombre" placeholder="Nombre completo" required>
-                <input type="email" id="regCorreo" placeholder="Correo electrónico" required>
-                <input type="password" id="regPassword" placeholder="Contraseña" required>
-                <button type="submit">Registrarme</button>
+                <input type="text"     id="regNombre"   placeholder="Nombre completo" required>
+                <input type="email"    id="regCorreo"   placeholder="Correo electrónico" required>
+                <input type="password" id="regPassword" placeholder="Contraseña (mín. 6 caracteres)" required>
+                <button type="submit">Crear cuenta</button>
+                <p class="form-link" onclick="mostrarvista('login')">
+                    ¿Ya tienes cuenta? <span>Inicia sesión</span>
+                </p>
             </form>
         </section>
 
-        <!-- MENÚ -->
+        <!-- ===== MENÚ / PRODUCTOS ===== -->
         <section id="view-menu" class="view">
 
-    <h2>🖥️ PCs</h2>
+            <h2>🖥️ PCs</h2>
 
-    <h3>🔥 Gama Alta</h3>
-    <div id="pc-alta" class="products-container"></div>
+            <h3>🔥 Gama Alta</h3>
+            <div id="pc-alta" class="products-container"></div>
 
-    <h3>⚡ Gama Media</h3>
-    <div id="pc-media" class="products-container"></div>
+            <h3>⚡ Gama Media</h3>
+            <div id="pc-media" class="products-container"></div>
 
-    <h3>💼 Trabajo y Oficina</h3>
-    <div id="pc-oficina" class="products-container"></div>
-
-
-    <h2>💻 Laptops</h2>
-
-    <h3>🔥 Gama Alta</h3>
-    <div id="laptop-alta" class="products-container"></div>
-
-    <h3>⚡ Gama Media</h3>
-    <div id="laptop-media" class="products-container"></div>
-
-    <h3>💼 Trabajo y Oficina</h3>
-    <div id="laptop-oficina" class="products-container"></div>
+            <h3>💼 Trabajo y Oficina</h3>
+            <div id="pc-oficina" class="products-container"></div>
 
 
-    <h2>⌨️ Accesorios</h2>
+            <h2>💻 Laptops</h2>
 
-    <h3>🔥 Gama Alta</h3>
-    <div id="accesorio-alta" class="products-container"></div>
+            <h3>🔥 Gama Alta</h3>
+            <div id="laptop-alta" class="products-container"></div>
 
-    <h3>⚡ Gama Media</h3>
-    <div id="accesorio-media" class="products-container"></div>
+            <h3>⚡ Gama Media</h3>
+            <div id="laptop-media" class="products-container"></div>
 
-    <h3>💼 Trabajo y Oficina</h3>
-    <div id="accesorio-oficina" class="products-container"></div>
+            <h3>💼 Trabajo y Oficina</h3>
+            <div id="laptop-oficina" class="products-container"></div>
 
-</section>
 
-        <!-- CARRITO -->
-        <section id="view-cart" class="view">
-            <div id="cart-items"></div>
-            
+            <h2>⌨️ Accesorios</h2>
+
+            <h3>🔥 Gama Alta</h3>
+            <div id="accesorio-alta" class="products-container"></div>
+
+            <h3>⚡ Gama Media</h3>
+            <div id="accesorio-media" class="products-container"></div>
+
+            <h3>💼 Trabajo y Oficina</h3>
+            <div id="accesorio-oficina" class="products-container"></div>
+
         </section>
 
-        <!-- CONTACTO -->
+        <!-- ===== CARRITO ===== -->
+        <section id="view-cart" class="view">
+            <div id="cart-items"></div>
+        </section>
+
+        <!-- ===== CONTACTO ===== -->
         <section id="view-contact" class="view">
             <h2>Contacto</h2>
             <div class="contact-grid">
 
-                <!-- INFO DUEÑO -->
+                <!-- Info dueño -->
                 <div class="card info-dueno">
-                    <h3>Sobre el dueño</h3>
+                    <h3>👤 Sobre el dueño</h3>
                     <p><strong>Nombre:</strong> Jhoel Sandoval</p>
-                    <p>Apasionado por la tecnología y comprometido con ofrecer los mejores equipos y atención.</p>
+                    <p>Apasionado por la tecnología y comprometido con ofrecer los mejores equipos y atención personalizada.</p>
+                    <p><strong>📞</strong> <a href="tel:+59164916803" style="color:var(--green);">+591 64916803</a></p>
+                    <p><strong>📍</strong> Cochabamba, Bolivia</p>
                     <p class="frase">"Gracias por elegirnos 💻"</p>
                 </div>
 
-                <!-- VIDEO -->
+                <!-- Video -->
                 <div class="card imagen-dueno">
+                    <h3>🎬 Presentación</h3>
                     <video class="video-dueno" autoplay muted loop playsinline>
                         <source src="video/emojipreocupado.mp4" type="video/mp4">
                         Tu navegador no soporta video.
                     </video>
                 </div>
 
-                <!-- FORMULARIO -->
+                <!-- Formulario -->
                 <div class="card form-card">
-                    <h3>Envíanos un mensaje</h3>
+                    <h3>✉️ Envíanos un mensaje</h3>
                     <form id="formContacto" class="contact-form">
-                        <input type="text" id="nombre" placeholder="Nombre completo" required>
-                        <input type="email" id="correo" placeholder="Correo electrónico" required>
-                        <textarea id="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+                        <input type="text"  id="nombre"  placeholder="Nombre completo" required>
+                        <input type="email" id="correo"  placeholder="Correo electrónico" required>
+                        <textarea           id="mensaje" placeholder="Escribe tu mensaje..." rows="5" required></textarea>
                         <button type="submit">Enviar Mensaje</button>
                     </form>
                 </div>
+
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- ========================= FOOTER ========================== -->
     <footer>
-        <p>Elaborado por Jhoel Sandoval © 2026</p>
+        <p>Elaborado por <span>Jhoel Sandoval</span> &copy; 2026 — TechStore Jhoel</p>
     </footer>
 
-    <!-- EMAILJS INIT -->
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- EmailJS Init -->
     <script>
-        (function () {
-            emailjs.init("15PS0JCpv6Y6Ju8FJ");
-        })();
+        (function () { emailjs.init("15PS0JCpv6Y6Ju8FJ"); })();
+    </script>
+
+    <!-- Navbar scroll effect -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
+        });
     </script>
 
 </body>

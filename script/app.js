@@ -6,8 +6,29 @@
 // VALIDAR SUPABASE
 // =========================
 if (typeof db === "undefined") {
-    alert("❌ Error conectando con Supabase");
+    console.error("❌ Supabase no inicializado");
     throw new Error("Supabase no inicializado");
+}
+
+// =========================
+// TOAST NOTIFICATIONS
+// =========================
+function showToast(message, type = "info") {
+    const container = document.getElementById("toastContainer");
+    if (!container) { console.log(message); return; }
+
+    const icons = { success: "✅", error: "❌", info: "ℹ️" };
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `<span>${icons[type] || "ℹ️"}</span><span>${message}</span>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(30px)";
+        toast.style.transition = "all 0.3s ease";
+        setTimeout(() => toast.remove(), 300);
+    }, 3500);
 }
 
 // =========================
@@ -59,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("✅ Usuario:", usuarioActual.email);
             entrarSistema();
         } else {
-            console.log("❌ Sin sesión");
+            console.log("ℹ️ Sin sesión activa");
             mostrarvista("home");
         }
 
@@ -148,17 +169,17 @@ function iniciarLogin() {
         try {
             const { data, error } = await db.auth.signInWithPassword({ email, password });
             if (error) {
-                alert("❌ Correo o contraseña incorrectos");
+                showToast("Correo o contraseña incorrectos", "error");
                 return;
             }
             usuarioActual = data.user;
             localStorage.setItem("correo", email);
             await actualizarEstadoUsuario();
             entrarSistema();
-            alert("✅ Sesión iniciada");
+            showToast("Sesión iniciada correctamente", "success");
         } catch (err) {
             console.error(err);
-            alert("Error iniciando sesión");
+            showToast("Error al iniciar sesión", "error");
         }
     });
 }
@@ -189,15 +210,15 @@ function iniciarRegistro() {
             });
 
             if (error) {
-                alert("❌ " + error.message);
+                showToast(error.message, "error");
                 return;
             }
-            alert("✅ Cuenta creada. Revisa tu correo para confirmar.");
+            showToast("Cuenta creada. Revisa tu correo para confirmar.", "success");
             form.reset();
             mostrarvista("login");
         } catch (err) {
             console.error(err);
-            alert("Error registrando");
+            showToast("Error al registrarse", "error");
         }
     });
 }
@@ -219,7 +240,7 @@ async function cerrarSesion() {
     guardarCarrito();
     localStorage.removeItem("correo");
     await actualizarEstadoUsuario();
-    alert("✅ Sesión cerrada");
+    showToast("Sesión cerrada", "info");
     location.reload();
 }
 
@@ -274,25 +295,22 @@ function renderizarProductos() {
 
     productos.forEach(p => {
 
+        const badgeClass = p.gama === "Alta" ? "badge-alta" : p.gama === "Media" ? "badge-media" : "badge-oficina";
+        const badgeLabel = p.gama === "Alta" ? "🔥 Alta" : p.gama === "Media" ? "⚡ Media" : "💼 Oficina";
+
         const card = `
             <div class="product-card">
-                <h3>${escaparHTML(p.nombre)}</h3>
-
+                <span class="badge-gama ${badgeClass}">${badgeLabel}</span>
                 <img
-                    src="${p.imagen || 'img/default.jpg'}"
+                    src="${p.imagen || 'img/logo.png'}"
                     alt="${escaparHTML(p.nombre)}"
-                    onerror="this.src='img/default.jpg'"
+                    onerror="this.src='img/logo.png'"
+                    loading="lazy"
                 >
-
+                <h3>${escaparHTML(p.nombre)}</h3>
                 <p>${escaparHTML(p.descripcion || "")}</p>
-
-                <span class="precio">
-                    Bs ${Number(p.precio).toFixed(2)}
-                </span>
-
-                <button
-                    class="btn-comprar agregar-btn"
-                    data-id="${p.id}">
+                <span class="precio">Bs ${Number(p.precio).toFixed(2)}</span>
+                <button class="btn-comprar agregar-btn" data-id="${p.id}">
                     🛒 Agregar al carrito
                 </button>
             </div>
@@ -352,7 +370,7 @@ function comprar(id) {
     guardarCarrito();
     renderizarCarrito();
     actualizarContador();
-    
+    showToast(`${producto.nombre} agregado al carrito`, "success");
 }
 
 // =========================
@@ -366,17 +384,19 @@ function renderizarCarrito() {
 
     if (carrito.length === 0) {
         html = `
-            <h2>🛒 Carrito</h2>
-            <p style="text-align:center; margin-top:30px; font-size:1.2rem;">
-                Tu carrito está vacío
-            </p>
+            <h2 style="margin-bottom:28px; font-size:1.8rem; font-weight:800; color:var(--white);">🛒 Carrito</h2>
+            <div class="empty-state">
+                <div class="empty-icon">🛒</div>
+                <h3>Tu carrito está vacío</h3>
+                <p>Agrega productos desde la sección de Productos</p>
+            </div>
         `;
         contenedor.innerHTML = html;
         return;
     }
 
     html += `
-        <h2 style="margin-bottom:20px; font-size:2rem;">🛒 Carrito</h2>
+        <h2 style="margin-bottom:20px; font-size:1.8rem; font-weight:800; color:var(--white);">🛒 Carrito</h2>
         <div class="cart-header">
             <span>Producto</span>
             <span>Subtotal</span>
@@ -474,7 +494,7 @@ async function pagar() {
     try {
         const { data: { user } } = await db.auth.getUser();
         if (!user) {
-            alert("Inicia sesión para realizar el pedido");
+            showToast("Inicia sesión para realizar el pedido", "error");
             mostrarvista("login");
             return;
         }
@@ -489,7 +509,7 @@ async function pagar() {
             .single();
 
         if (pedidoError) {
-            alert("Error al guardar pedido: " + pedidoError.message);
+            showToast("Error al guardar pedido: " + pedidoError.message, "error");
             return;
         }
 
@@ -505,7 +525,7 @@ async function pagar() {
             .insert(productosPedido);
 
         if (itemsError) {
-            alert("Error al guardar productos: " + itemsError.message);
+            showToast("Error al guardar productos: " + itemsError.message, "error");
             return;
         }
 
@@ -520,11 +540,11 @@ async function pagar() {
         window.open(`https://wa.me/59164916803?text=${mensaje}`, "_blank");
 
         vaciarCarrito();
-        alert(`✅ Pedido #${pedido.id} guardado correctamente!`);
+        showToast(`Pedido #${pedido.id} guardado correctamente`, "success");
 
     } catch (err) {
         console.error(err);
-        alert("Error procesando el pedido.");
+        showToast("Error procesando el pedido", "error");
     }
 }
 
@@ -547,11 +567,11 @@ function iniciarContacto() {
                 from_email: correo,
                 message: mensaje
             });
-            alert("✅ Mensaje enviado");
+            showToast("Mensaje enviado correctamente", "success");
             form.reset();
         } catch (error) {
             console.error(error);
-            alert("❌ Error enviando mensaje");
+            showToast("Error al enviar el mensaje", "error");
         }
     });
 }
